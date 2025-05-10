@@ -1,11 +1,37 @@
 import { useState, useEffect, useCallback } from "react";
 import UserCard from "../components/UserCard";
 import SearchBar from "../components/SearchBar";
+import AsideBar from "../components/AsideBar";
+import factoredLogo from "../assets/factored.svg";
 
 const Home = () => {
   const [employees, setEmployees] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [msgInfo, setMsgInfo] = useState("");
+
+  const technologies = [
+    "Python",
+    "SQL",
+    "Java",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Node.js",
+    "MongoDB",
+    "HTML",
+    "CSS",
+    "PHP",
+    "Ruby",
+    "C++",
+    "C#",
+    "Swift",
+    "Go",
+    "Kotlin",
+    "Django",
+    "Flask",
+    "Spring",
+    "Angular",
+  ];
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -32,19 +58,46 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-6 bg-gray-950 h-screen">
-      <h1 className="text-3xl font-bold text-white text-center mb-6">
-        Employee Directory
-      </h1>
+    <div className="flex flex-col h-screen  bg-gray-950">
+      <div className="flex items-center p-6 mt-2 justify-between w-full h-16 bg-gray-950 shadow-md mb-5">
+        <div className="flex items-center justify-center w-50 h-auto mr-2">
+          <img src={factoredLogo} alt="Factored Logo" />
+        </div>
+        <div className="text-white text-sm">
+            By Juan Maestre
+        </div>
+        <h1 className="text-3xl font-bold text-white text-center my-6">
+          Employee Directory
+        </h1>
+      </div>
 
-      <SearchBar onResults={handleResults} setMsgInfo={handleMsgInfo} />
-
-      {msgInfo && <p className="text-center text-white mt-4">{msgInfo}</p>}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 mx-5 py-5">
-        {(searchResult.length > 0 ? searchResult : employees).map((employee) => (
-          <UserCard key={employee._id} employee={employee} />
-        ))}
+      <div className="flex gap-1">
+        <AsideBar
+          technologies={technologies}
+          onFilter={(selectedTechnologies) => {
+            const filteredEmployees = employees.filter((employee) =>
+              employee.skills.some((skill) =>
+                selectedTechnologies.includes(skill.name)
+              )
+            );
+            setSearchResult(filteredEmployees);
+          }}
+        />
+        <div className="flex-1 flex flex-col overflow-auto">
+          <div className="px-6">
+            <SearchBar onResults={handleResults} setMsgInfo={handleMsgInfo} />
+            {msgInfo && (
+              <p className="text-center text-white mt-4">{msgInfo}</p>
+            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+              {(searchResult.length > 0 ? searchResult : employees).map(
+                (employee) => (
+                  <UserCard key={employee._id} employee={employee} />
+                )
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
