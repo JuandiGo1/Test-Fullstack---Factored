@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import connectDB from './config/db.js';
+import seedDatabase from './config/db.js';
 import routerUser from './routes/users.routes.js';
 import dotenv from 'dotenv';
 
@@ -17,8 +17,8 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-const db = await connectDB();
+//connect and populate DB
+const db = await seedDatabase();
 app.locals.db = db;
 
 app.use(routerUser);

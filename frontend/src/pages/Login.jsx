@@ -13,16 +13,16 @@ const Login = () => {
       return;
     }
     localStorage.setItem("username", username);
-    navigate("/dashboard");
+    navigate("/home");
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-3">
+    <div className="flex flex-col items-center justify-center min-h-screen p-3 bg-gray-950">
       <div className="p-8 rounded-lg shadow-md w-80 border border-white">
         <div className="flex items-center justify-center w-full h-auto mb-6">
           <img src={factoredLogo} alt="Factored Logo" />
         </div>
-        <h1 className="text-2xl font-bold text-center mb-6 text-white">
+        <h1 className="text-2xl font-medium text-center mb-6 text-white">
           Login with Username
         </h1>
         <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>

@@ -3,9 +3,9 @@ import { getEmployeeByName, getEmployees, createEmployee, deleteEmployee } from 
 
 const routerUser = Router();
 
-routerUser.post("/users/add", createEmployee);
-routerUser.get("/users", getEmployees);
-routerUser.get("/users/:name", getEmployeeByName);
-routerUser.delete("/users/:id", deleteEmployee);
+routerUser.post("/employees/add", createEmployee);
+routerUser.get("/employees", getEmployees);
+routerUser.get("/employees/:name", getEmployeeByName);
+routerUser.delete("/employees/:id", deleteEmployee);
 
 export default routerUser;
