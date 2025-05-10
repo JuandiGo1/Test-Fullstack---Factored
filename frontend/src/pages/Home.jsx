@@ -58,8 +58,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen  bg-gray-950">
-      <div className="flex items-center p-6 mt-2 justify-between w-full h-16 bg-gray-950 shadow-md mb-5">
+    <div className="flex flex-col h-screen  bg-gray-950 overflow-auto">
+      <div className="flex items-center p-6 mt-2 border-b-2 border-white justify-between w-full h-16 bg-gray-950 shadow-md ">
         <div className="flex items-center justify-center w-50 h-auto mr-2">
           <img src={factoredLogo} alt="Factored Logo" />
         </div>
@@ -83,7 +83,7 @@ const Home = () => {
             setSearchResult(filteredEmployees);
           }}
         />
-        <div className="flex-1 flex flex-col overflow-auto">
+        <div className="flex-1 flex flex-col mt-5">
           <div className="px-6">
             <SearchBar onResults={handleResults} setMsgInfo={handleMsgInfo} />
             {msgInfo && (

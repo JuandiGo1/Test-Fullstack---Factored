@@ -14,7 +14,7 @@ const AsideBar = ({ technologies, onFilter }) => {
   };
 
   return (
-    <aside className="w-64 bg-gray-900 text-white p-4 rounded-lg shadow-md sticky top-0 h-screen overflow-y-auto">
+    <aside className="w-64 border-r-2 text-white p-4 shadow-md sticky top-0 h-screen overflow-y-auto">
       <h2 className="text-xl font-bold mb-4">Filter by Technology</h2>
       <ul className="space-y-2">
         {technologies.map((tech, index) => (
