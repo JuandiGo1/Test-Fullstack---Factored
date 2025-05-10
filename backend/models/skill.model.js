@@ -13,4 +13,4 @@ const skillSchema = new Schema({
   },
 });
 
-export default model("Skill", skillSchema);
+export default skillSchema;
