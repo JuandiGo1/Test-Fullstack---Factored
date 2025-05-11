@@ -19,9 +19,9 @@ const UserDetails = ({ employee, onClose }) => {
         <h2 className="text-2xl font-bold text-center mb-2">{employee.name}</h2>
         <p className="text-center text-gray-200 mb-4">{employee.position}</p>
         <div className="flex items-center justify-between gap-2">
-          <div>
+          <div className="w-1/2 flex flex-col items-center">
             <h3 className="text-lg font-semibold mb-2">Skills:</h3>
-            <ul className="list-disc list-inside text-gray-200">
+            <ul className="list-none text-gray-200">
               {employee.skills.map((skill, index) => (
                 <li key={index}>
                   {skill.name} - {skill.rating}/10
