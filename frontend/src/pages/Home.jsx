@@ -4,6 +4,8 @@ import SearchBar from "../components/SearchBar";
 import AsideBar from "../components/AsideBar";
 import factoredLogo from "../assets/factored.svg";
 import CreateEmployee from "./CreateEmployee";
+import { FaGithubSquare } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 const Home = () => {
   const [employees, setEmployees] = useState([]);
@@ -68,10 +70,14 @@ const Home = () => {
         <div className="flex items-center justify-center w-50 h-auto mr-2">
           <img src={factoredLogo} alt="Factored Logo" />
         </div>
-        <div className="text-white text-sm">By Juan Maestre</div>
         <h1 className="text-3xl font-bold text-white text-center my-6">
           Employee Directory
         </h1>
+        <div className="text-white text-sm flex items-center gap-2">
+            <a href="https://github.com/JuandiGo1"> <FaGithubSquare className="text-white text-xl "/> </a>
+            <a href="https://www.linkedin.com/in/juan-maestre-b9573330a/"> <FaLinkedin className="text-white text-xl "/> </a>
+            
+            By Juan Maestre</div>
       </div>
 
       <div className="flex gap-1">
@@ -82,7 +88,7 @@ const Home = () => {
               <>
                 <div className="flex w-full items-center justify-between">
                   <button
-                    onClick={()=> handlePageChange("create")}
+                    onClick={() => handlePageChange("create")}
                     type="button"
                     className="bg-blue-600 text-white p-2 rounded hover:bg-white hover:text-black cursor-pointer transition duration-300 transform hover:scale-105"
                   >
@@ -110,16 +116,15 @@ const Home = () => {
               <>
                 <div className="flex items-center justify-between">
                   <button
-                    onClick={()=> handlePageChange("home")}
+                    onClick={() => handlePageChange("home")}
                     type="button"
                     className="bg-blue-600 text-white p-2 rounded hover:bg-white hover:text-black cursor-pointer transition duration-300 transform hover:scale-105"
                   >
                     ← Back
                   </button>
-                 
                 </div>
 
-                <CreateEmployee/>
+                <CreateEmployee />
               </>
             )}
           </div>
