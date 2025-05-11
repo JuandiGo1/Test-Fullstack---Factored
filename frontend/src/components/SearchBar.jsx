@@ -36,7 +36,7 @@ const SearchBar = ({ onResults, setMsgInfo }) => {
 
   return (
     <form
-      className="flex items-center max-w-sm mx-auto"
+      className="flex items-center max-w-sm "
       onSubmit={(e) => e.preventDefault()}
     >
       <label htmlFor="simple-search" className="sr-only">

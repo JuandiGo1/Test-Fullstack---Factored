@@ -3,12 +3,14 @@ import UserCard from "../components/UserCard";
 import SearchBar from "../components/SearchBar";
 import AsideBar from "../components/AsideBar";
 import factoredLogo from "../assets/factored.svg";
+import CreateEmployee from "./CreateEmployee";
 
 const Home = () => {
   const [employees, setEmployees] = useState([]);
   const [technologies, setTechnologies] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [msgInfo, setMsgInfo] = useState("");
+  const [page, setPage] = useState("home");
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -50,12 +52,14 @@ const Home = () => {
   const handleFilter = (selectedTechnologies) => {
     const filteredEmployees = employees.filter((employee) =>
       employee.skills.some((skill) =>
-        selectedTechnologies.some(
-          (tech) => tech=== skill.name.toUpperCase()
-        )
+        selectedTechnologies.some((tech) => tech === skill.name.toUpperCase())
       )
     );
     setSearchResult(filteredEmployees);
+  };
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
   };
 
   return (
@@ -71,23 +75,53 @@ const Home = () => {
       </div>
 
       <div className="flex gap-1">
-        <AsideBar
-          technologies={technologies}
-          onFilter={handleFilter}
-        />
-        <div className="flex-1 flex flex-col mt-5">
+        <AsideBar technologies={technologies} onFilter={handleFilter} />
+        <div className="flex-1 flex flex-col mt-5 py-5">
           <div className="px-6">
-            <SearchBar onResults={handleResults} setMsgInfo={handleMsgInfo} />
-            {msgInfo && (
-              <p className="text-center text-white mt-4">{msgInfo}</p>
+            {page === "home" ? (
+              <>
+                <div className="flex w-full items-center justify-between">
+                  <button
+                    onClick={()=> handlePageChange("create")}
+                    type="button"
+                    className="bg-blue-600 text-white p-2 rounded hover:bg-white hover:text-black cursor-pointer transition duration-300 transform hover:scale-105"
+                  >
+                    Add Employee
+                  </button>
+                  <SearchBar
+                    onResults={handleResults}
+                    setMsgInfo={handleMsgInfo}
+                  />
+                </div>
+
+                {msgInfo && (
+                  <p className="text-center text-white mt-4">{msgInfo}</p>
+                )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+                  {(searchResult.length > 0 ? searchResult : employees).map(
+                    (employee) => (
+                      <UserCard key={employee._id} employee={employee} />
+                    )
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={()=> handlePageChange("home")}
+                    type="button"
+                    className="bg-blue-600 text-white p-2 rounded hover:bg-white hover:text-black cursor-pointer transition duration-300 transform hover:scale-105"
+                  >
+                    ← Back
+                  </button>
+                  <h1 className="text-white text-3xl font-bold  mx-auto">Add an Employee</h1>
+                </div>
+
+                <CreateEmployee/>
+              </>
             )}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
-              {(searchResult.length > 0 ? searchResult : employees).map(
-                (employee) => (
-                  <UserCard key={employee._id} employee={employee} />
-                )
-              )}
-            </div>
           </div>
         </div>
       </div>

@@ -12,11 +12,12 @@ export const getEmployees = async (req, res) => {
 
 // Create a new employee
 export const createEmployee = async (req, res) => {
-  const { name, position, avatar, age, skills } = req.body;
+  const { name, position, email, avatar, age, skills } = req.body;
 
   const newEmployee = new employeeModel({
     name,
     position,
+    email,
     avatar,
     age,
     skills,
