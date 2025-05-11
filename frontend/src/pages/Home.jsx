@@ -116,7 +116,7 @@ const Home = () => {
                   >
                     ← Back
                   </button>
-                  <h1 className="text-white text-3xl font-bold  mx-auto">Add an Employee</h1>
+                 
                 </div>
 
                 <CreateEmployee/>
