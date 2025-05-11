@@ -65,3 +65,21 @@ export const deleteEmployee = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Get all employees technologies
+export const getAllTechnologies = async (req, res) => {
+  try {
+    const employees = await employeeModel.find();
+    const allTechnologies = new Set();
+
+    employees.forEach((employee) => {
+      employee.skills.forEach((skill) => {
+        allTechnologies.add(skill.name.toUpperCase());
+      });
+    });
+
+    res.status(200).json(Array.from(allTechnologies));
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

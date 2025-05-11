@@ -6,11 +6,11 @@ const AsideBar = ({ technologies, onFilter }) => {
 
   const handleCheckboxChange = (tech) => {
     const updatedTechnologies = selectedTechnologies.includes(tech)
-      ? selectedTechnologies.filter((t) => t !== tech) // Quitar si ya está seleccionado
-      : [...selectedTechnologies, tech]; // Agregar si no está seleccionado
+      ? selectedTechnologies.filter((t) => t !== tech) // Quit if already selected
+      : [...selectedTechnologies, tech]; 
 
     setSelectedTechnologies(updatedTechnologies);
-    onFilter(updatedTechnologies); // Pasar las tecnologías seleccionadas al componente padre
+    onFilter(updatedTechnologies);
   };
 
   return (

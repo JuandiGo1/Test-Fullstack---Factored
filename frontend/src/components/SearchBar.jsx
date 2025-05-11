@@ -7,9 +7,16 @@ const SearchBar = ({ onResults, setMsgInfo }) => {
     const delayDebounce = setTimeout(async () => {
       if (searchTerm.trim().length > 0) {
         try {
-          const response = await fetch(`http://localhost:3000/employees/${searchTerm}`);
+          const response = await fetch(
+            `http://localhost:3000/employees/${searchTerm}`
+          );
           if (!response.ok) {
-            throw new Error("Failed to fetch employees");
+            if (response.status === 404) {
+              setMsgInfo("No results found.");
+              return
+            } else {
+              throw new Error("Failed to fetch employees");
+            }
           }
           const res = await response.json();
           setMsgInfo(res.length === 0 ? "No results found." : "");
@@ -22,15 +29,15 @@ const SearchBar = ({ onResults, setMsgInfo }) => {
         setMsgInfo("");
         onResults([]);
       }
-    }, 500); 
+    }, 500);
 
-    return () => clearTimeout(delayDebounce); 
+    return () => clearTimeout(delayDebounce);
   }, [searchTerm, onResults, setMsgInfo]);
 
   return (
     <form
       className="flex items-center max-w-sm mx-auto"
-      onSubmit={(e) => e.preventDefault()} 
+      onSubmit={(e) => e.preventDefault()}
     >
       <label htmlFor="simple-search" className="sr-only">
         Search
