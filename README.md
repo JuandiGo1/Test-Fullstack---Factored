@@ -8,7 +8,7 @@ This is a simple fullstack web application to display employee profiles, built w
 - **Frontend:** React + Vite + Tailwind
 - **Backend:** Express + Node.js
 - **Database:** MongoDB
-- **Deployment:** Docker + Docker Compose
+- **Deployment:** Vercel https://factored-client.vercel.app/
 
 ---
 
