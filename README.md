@@ -25,7 +25,7 @@ This app allows you to:
 
 ---
 
-## 🛠️ How to run it (for non-techies)
+## 🛠️ How to run it
 
 > ⚠️ You only need **Docker Desktop** installed. No coding or setup needed!
 
